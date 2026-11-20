@@ -10,6 +10,10 @@ app = Flask("Emotion Detector")
 def sent_detector():
     """Analyze the text received and return the detected emotions."""
     text_to_analyze = request.args.get("textToAnalyze")
+
+    if not text_to_analyze or not text_to_analyze.strip():
+        return "Invalid text! Please try again!"
+
     response = emotion_detector(text_to_analyze)
 
     if response['dominant_emotion'] is None:
